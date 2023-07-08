@@ -1,0 +1,31 @@
+import React from 'react';
+
+type SidebarStepProps = {
+  stepNum: number;
+  stepInfo: string;
+  active: boolean;
+};
+
+export default function SidebarStep({
+  stepNum,
+  stepInfo,
+  active,
+}: SidebarStepProps) {
+  return (
+    <div className='flex items-center space-x-4'>
+      <div
+        className={`${
+          active ? 'bg-sky-200' : 'bg-transparent text-white border border-sky-200'
+        } w-8 h-8 bg-sky-200 rounded-full grid place-items-center font-bold`}
+      >
+        {stepNum}
+      </div>
+      <div className='flex flex-col'>
+        <span className='text-xs text-gray-200/70 font-normal'>{`Step ${stepNum}`}</span>
+        <h5 className='uppercase text-white font-medium text-[0.9rem] tracking-wider'>
+          {stepInfo}
+        </h5>
+      </div>
+    </div>
+  );
+}
