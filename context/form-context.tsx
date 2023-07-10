@@ -21,7 +21,7 @@ type FormStateType = {
 };
 
 const FORM_STATE: FormStateType = {
-  formIndex: 2,
+  formIndex: 0,
   personal: {
     userName: '',
     userEmail: '',
@@ -40,6 +40,7 @@ const FORM_STATE: FormStateType = {
 
 const FormContext = createContext({
   form: FORM_STATE,
+  toggleYearly: () => {},
   setForm: (
     form: typeof FORM_STATE | ((form: typeof FORM_STATE) => typeof FORM_STATE),
   ) => {},
@@ -48,8 +49,18 @@ const FormContext = createContext({
 export function FormProvider({ children }: { children: ReactNode }) {
   const [form, setForm] = useState(FORM_STATE);
 
+  function toggleYearly() {
+    setForm(prev => ({
+      ...prev,
+      plan: {
+        ...prev.plan,
+        yearly: !prev.plan.yearly,
+      },
+    }));
+  }
+
   return (
-    <FormContext.Provider value={{ form, setForm }}>
+    <FormContext.Provider value={{ form, setForm, toggleYearly }}>
       {children}
     </FormContext.Provider>
   );
