@@ -5,17 +5,7 @@ import { ChangeEvent } from 'react';
 import PlansToggle from './PlansToggle';
 
 export default function Plan() {
-  const { form, setForm } = useForm();
-
-  function toggleYearly() {
-    setForm(prev => ({
-      ...prev,
-      plan: {
-        ...prev.plan,
-        yearly: !prev.plan.yearly,
-      },
-    }));
-  }
+  const { form, setForm, toggleYearly } = useForm();
 
   function handlePlan(e: ChangeEvent<HTMLInputElement>) {
     setForm(prev => ({
