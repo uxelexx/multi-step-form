@@ -39,7 +39,7 @@ export default function Main() {
           {form.formIndex > 0 && (
             <Button
               onClick={prevStep}
-              className='bg-transparent text-gray-300 hover:bg-transparent hover:text-indigo-800'
+              className='bg-transparent text-black/30 hover:bg-transparent hover:text-indigo-800'
               label='go back'
             />
           )}
