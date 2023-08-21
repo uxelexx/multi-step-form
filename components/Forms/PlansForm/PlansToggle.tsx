@@ -1,5 +1,5 @@
 import { cn } from '@/helpers/cn';
-import React from 'react';
+import { Toggle } from './Toggle';
 
 type PlansToggleProps = {
   yearly: boolean;
@@ -20,16 +20,7 @@ export default function PlansToggle({
       )}
     >
       <span className={`${!yearly && 'text-indigo-950'}`}>Monthly</span>
-      <div
-        onClick={onClick}
-        className='cursor-pointer relative w-9 h-5 p-1 bg-indigo-950 flex items-center rounded-full duration-100 ease-in-out'
-      >
-        <div
-          className={`absolute w-3 h-3 bg-white rounded-full duration-150 ease-in-out ${
-            yearly && 'translate-x-4'
-          }`}
-        ></div>
-      </div>
+      <Toggle isToggled={yearly} onClick={onClick} label='Yearly plan switch' />
       <span className={`${yearly && 'text-indigo-950'}`}>Yearly</span>
     </div>
   );
