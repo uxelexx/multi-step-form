@@ -4,6 +4,8 @@ import { ReactNode, createContext, useContext, useState } from 'react';
 
 type FormStateType = {
   formIndex: number;
+  done: boolean;
+  formSteps: string[];
   personal: {
     userName: string;
     userEmail: string;
@@ -22,6 +24,8 @@ type FormStateType = {
 
 const FORM_STATE: FormStateType = {
   formIndex: 0,
+  done: false,
+  formSteps: ['Your info', 'Select plan', 'Add-ons', 'Summary'],
   personal: {
     userName: '',
     userEmail: '',
@@ -41,6 +45,9 @@ const FORM_STATE: FormStateType = {
 const FormContext = createContext({
   form: FORM_STATE,
   toggleYearly: () => {},
+  nextStep: () => {},
+  prevStep: () => {},
+  confirm: () => {},
   setForm: (
     form: typeof FORM_STATE | ((form: typeof FORM_STATE) => typeof FORM_STATE),
   ) => {},
@@ -48,6 +55,7 @@ const FormContext = createContext({
 
 export function FormProvider({ children }: { children: ReactNode }) {
   const [form, setForm] = useState(FORM_STATE);
+  const lastPage = form.formIndex >= 3;
 
   function toggleYearly() {
     setForm(prev => ({
@@ -59,8 +67,39 @@ export function FormProvider({ children }: { children: ReactNode }) {
     }));
   }
 
+  function nextStep() {
+    if (lastPage) return;
+
+    setForm(prev => ({
+      ...prev,
+      formIndex: ++prev.formIndex,
+    }));
+  }
+
+  function prevStep() {
+    if (form.formIndex <= 0) return;
+
+    setForm(prev => ({
+      ...prev,
+      formIndex: --prev.formIndex,
+    }));
+  }
+
+  function confirm() {
+    if (!lastPage) return;
+
+    setForm(prev => ({
+      ...prev,
+      done: true,
+    }));
+
+    console.log(form.personal);
+  }
+
   return (
-    <FormContext.Provider value={{ form, setForm, toggleYearly }}>
+    <FormContext.Provider
+      value={{ form, setForm, toggleYearly, prevStep, nextStep, confirm }}
+    >
       {children}
     </FormContext.Provider>
   );
