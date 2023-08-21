@@ -4,8 +4,11 @@ import FormContainer from '../FormContainer';
 import { Input } from './Input';
 import Button from '@/components/Button/Button';
 
+// TODO:
+// 1) Refactor to useForm with Zod validation
+
 export default function PersonalInfo() {
-  const { form, setForm } = useForm();
+  const { form, setForm, nextStep } = useForm();
 
   function handleInputs(e: ChangeEvent<HTMLInputElement>) {
     setForm(prev => ({
@@ -22,9 +25,11 @@ export default function PersonalInfo() {
       heading='Personal info'
       description='Please provide your name, email address, and phone number.'
     >
-      <form className='flex flex-col h-full'>
+      <form onSubmit={nextStep} className='flex flex-col h-full'>
         <div className='flex flex-col space-y-6'>
           <Input
+            autoFocus
+            min={5}
             label='Name'
             type='text'
             name='userName'
@@ -49,7 +54,9 @@ export default function PersonalInfo() {
             onChange={handleInputs}
           />
         </div>
-        <Button label='Next step' className='mt-auto ml-auto' />
+        <Button type='submit' className='mt-auto ml-auto'>
+          Next step
+        </Button>
       </form>
     </FormContainer>
   );
