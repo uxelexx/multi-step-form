@@ -1,0 +1,20 @@
+[
+  {
+    "label": "Online service",
+    "name": "onlineService",
+    "desc": "Access to multiplayer games",
+    "price": 1
+  },
+  {
+    "label": "Larger storage",
+    "name": "largeStorage",
+    "desc": "Extra 1TB of cloud save",
+    "price": 2
+  },
+  {
+    "label": "Customizable profile",
+    "name": "customizableProfile",
+    "desc": "Custom theme on your profile",
+    "price": 2
+  }
+]
