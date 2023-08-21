@@ -5,7 +5,8 @@ export default function Sidebar() {
   const { form } = useForm();
 
   return (
-    <div className='w-[29%] bg-sidebar space-y-6 rounded-xl p-9 bg-no-repeat'>
+    <aside className='w-[17rem] h-full bg-sidebar space-y-6 rounded-xl p-9 bg-cover'>
+      {form.formSteps.map((step, i) => {
         const isActive = form.formIndex === i;
         return (
           <SidebarStep
@@ -16,5 +17,6 @@ export default function Sidebar() {
           />
         );
       })}
+    </aside>
   );
 }
