@@ -7,12 +7,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   onClick?: () => void;
 };
 
-export default function Button({
-  label,
-  className,
-  onClick,
-  ...props
-}: ButtonProps) {
+export default function Button({ className, onClick, ...props }: ButtonProps) {
   return (
     <button
       {...props}
@@ -22,7 +17,7 @@ export default function Button({
         className,
       )}
     >
-      {label}
+      {props.children}
     </button>
   );
 }
