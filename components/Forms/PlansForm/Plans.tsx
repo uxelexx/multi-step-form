@@ -1,14 +1,16 @@
+import Button from '@/components/Button/Button';
 import { useForm } from '@/context/form-context';
+import { ChangeEvent } from 'react';
 import FormContainer from '../FormContainer';
 import PlanOption from './PlanOption';
-import { ChangeEvent } from 'react';
 import PlansToggle from './PlansToggle';
-import Button from '@/components/Button/Button';
+import plans from './plans.json';
 
 export default function Plan() {
   const { form, setForm, toggleYearly, nextStep, prevStep } = useForm();
 
   function handlePlan(e: ChangeEvent<HTMLInputElement>) {
+    console.dir(e.target);
     setForm(prev => ({
       ...prev,
       plan: {
@@ -24,31 +26,16 @@ export default function Plan() {
       description='You have the option of montly or yearly billing'
     >
       <form onSubmit={nextStep} className='h-full flex-col flex'>
-        <div className='flex space-x-5'>
-          <PlanOption
-            yearly={form.plan.yearly}
-            onChange={handlePlan}
-            checked={form.plan.type === 'Arcade'}
-            heading='Arcade'
-            price='9'
-            icon='icon-arcade.svg'
-          />
-          <PlanOption
-            yearly={form.plan.yearly}
-            onChange={handlePlan}
-            checked={form.plan.type === 'Advanced'}
-            heading='Advanced'
-            price='12'
-            icon='icon-advanced.svg'
-          />
-          <PlanOption
-            yearly={form.plan.yearly}
-            onChange={handlePlan}
-            checked={form.plan.type === 'Pro'}
-            heading='Pro'
-            price='15'
-            icon='icon-pro.svg'
-          />
+        <div role='radiogroup' className='flex space-x-5'>
+          {plans.map(option => (
+            <PlanOption
+              yearly={form.plan.yearly}
+              checked={form.plan.type === option.value}
+              onChange={handlePlan}
+              key={option.value}
+              {...option}
+            />
+          ))}
         </div>
         <PlansToggle
           className='mt-8'
@@ -56,10 +43,7 @@ export default function Plan() {
           yearly={form.plan.yearly}
         />
         <div className='flex justify-between mt-auto'>
-          <Button
-            onClick={prevStep}
-            className='bg-transparent text-black text-opacity-30 hover:bg-transparent hover:text-indigo-600'
-          >
+          <Button onClick={prevStep} variant='secondary'>
             Go back
           </Button>
           <Button type='submit'>Next step</Button>
