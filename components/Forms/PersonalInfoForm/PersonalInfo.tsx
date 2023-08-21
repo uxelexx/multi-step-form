@@ -20,34 +20,36 @@ export default function PersonalInfo() {
   return (
     <FormContainer
       heading='Personal info'
-      description='Please provide yoru name, email address, and phone number.'
+      description='Please provide your name, email address, and phone number.'
     >
-      <form className='text-indigo-950 flex flex-col space-y-6'>
-        <Input
-          label='Name'
-          type='text'
-          name='userName'
-          placeholder='John Doe'
-          value={form.personal.userName}
-          onChange={handleInputs}
-        />
-        <Input
-          label='Email address'
-          name='userEmail'
-          type='email'
-          placeholder='some@mail.com'
-          value={form.personal.userEmail}
-          onChange={handleInputs}
-        />
-        <Input
-          label='userPone'
-          name='userPhone'
-          placeholder='+1 234 567 890'
-          type='tel'
-          value={form.personal.userPhone}
-          onChange={handleInputs}
-        />
-        <Button label='Next step' className='self-end' />
+      <form className='flex flex-col h-full'>
+        <div className='flex flex-col space-y-6'>
+          <Input
+            label='Name'
+            type='text'
+            name='userName'
+            placeholder='John Doe'
+            value={form.personal.userName}
+            onChange={handleInputs}
+          />
+          <Input
+            label='Email address'
+            name='userEmail'
+            type='email'
+            placeholder='some@mail.com'
+            value={form.personal.userEmail}
+            onChange={handleInputs}
+          />
+          <Input
+            label='Phone number'
+            name='userPhone'
+            placeholder='+1 234 567 890'
+            type='tel'
+            value={form.personal.userPhone}
+            onChange={handleInputs}
+          />
+        </div>
+        <Button label='Next step' className='mt-auto ml-auto' />
       </form>
     </FormContainer>
   );
