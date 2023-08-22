@@ -24,7 +24,7 @@ export default function Button({
       {...props}
       onClick={onClick}
       className={cn(
-        'font-medium w-32 py-3 px-5 rounded-lg capitalize duration-75 outline-indigo-300',
+        'font-medium w-32 py-3 px-5 rounded-lg capitalize duration-75',
         variants[variant],
         className,
       )}
