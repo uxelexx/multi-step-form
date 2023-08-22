@@ -1,6 +1,6 @@
 import Button from '@/components/Button/Button';
 import { useForm } from '@/context/form-context';
-import { ChangeEvent } from 'react';
+import { MouseEvent } from 'react';
 import FormContainer from '../FormContainer';
 import PlanOption from './PlanOption';
 import PlansToggle from './PlansToggle';
@@ -9,13 +9,13 @@ import plans from './plans.json';
 export default function Plan() {
   const { form, setForm, toggleYearly, nextStep, prevStep } = useForm();
 
-  function handlePlan(e: ChangeEvent<HTMLInputElement>) {
-    console.dir(e.target);
+  function handlePlan(e: MouseEvent<HTMLDivElement>) {
+    const target = e.target as HTMLElement;
     setForm(prev => ({
       ...prev,
       plan: {
         ...prev.plan,
-        type: e.target.value,
+        type: target.getAttribute('data-value') || 'Arcade',
       },
     }));
   }
@@ -31,7 +31,7 @@ export default function Plan() {
             <PlanOption
               yearly={form.plan.yearly}
               checked={form.plan.type === option.value}
-              onChange={handlePlan}
+              onClick={handlePlan}
               key={option.value}
               {...option}
             />
