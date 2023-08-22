@@ -5,6 +5,7 @@ import FormContainer from '../FormContainer';
 import PlanOption from './PlanOption';
 import PlansToggle from './PlansToggle';
 import plans from './plans.json';
+import { StepNav } from '@/components/Button/StepNav';
 
 export default function Plan() {
   const { form, setForm, toggleYearly, nextStep, prevStep } = useForm();
@@ -42,12 +43,7 @@ export default function Plan() {
           onClick={toggleYearly}
           yearly={form.plan.yearly}
         />
-        <div className='flex justify-between mt-auto'>
-          <Button onClick={prevStep} variant='secondary'>
-            Go back
-          </Button>
-          <Button type='submit'>Next step</Button>
-        </div>
+        <StepNav />
       </form>
     </FormContainer>
   );
