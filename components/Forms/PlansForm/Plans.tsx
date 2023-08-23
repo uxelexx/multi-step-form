@@ -12,10 +12,9 @@ export default function Plan() {
     const target = e.target as HTMLElement;
     setForm(prev => ({
       ...prev,
-      plan: {
-        ...prev.plan,
-        type: target.getAttribute('data-value') || 'Arcade',
-      },
+      plan:
+        (target.getAttribute('data-value') as keyof typeof PLAN_PRICE) ||
+        'Arcade',
     }));
   }
 
