@@ -1,29 +1,40 @@
 'use client';
 
+import { ADDS_PRICE, PLAN_PRICE } from '@/helpers/prices';
 import { ReactNode, createContext, useContext, useState } from 'react';
 
-type FormStateType = {
-  formIndex: number;
-  done: boolean;
-  formSteps: string[];
-  personal: {
-    userName: string;
-    userEmail: string;
-    userPhone: string;
-  };
-  plan: {
-    yearly: boolean;
-    type: string;
-  };
-  addOns: {
-    onlineService: boolean;
-    largeStorage: boolean;
-    customizableProfile: boolean;
-  };
+//TODO: Refactor to RTK
+
+type Plan = keyof typeof PLAN_PRICE;
+
+type AddsService = {
+  included: boolean;
+  price: number;
 };
 
-const FORM_STATE: FormStateType = {
-  formIndex: 0,
+type AddOns = {
+  [Key in keyof typeof ADDS_PRICE]: AddsService;
+};
+
+type PersonalInfo = {
+  userName: string;
+  userEmail: string;
+  userPhone: string;
+};
+
+export type FormStateType = {
+  formIndex: number;
+  done: boolean;
+  yearly: boolean;
+  formSteps: string[];
+  personal: PersonalInfo;
+  plan: Plan;
+  addOns: AddOns;
+};
+
+const initialState: FormStateType = {
+  formIndex: 1, // TODO: change to 0 later
+  yearly: false,
   done: false,
   formSteps: ['Your info', 'Select plan', 'Add-ons', 'Summary'],
   personal: {
@@ -31,75 +42,26 @@ const FORM_STATE: FormStateType = {
     userEmail: '',
     userPhone: '',
   },
-  plan: {
-    yearly: false,
-    type: 'Arcade',
-  },
+  plan: 'Arcade',
   addOns: {
-    onlineService: false,
-    largeStorage: false,
-    customizableProfile: false,
+    service: { included: false, price: ADDS_PRICE.service },
+    storage: { included: false, price: ADDS_PRICE.storage },
+    profile: { included: false, price: ADDS_PRICE.profile },
   },
 };
 
 const FormContext = createContext({
-  form: FORM_STATE,
-  toggleYearly: () => {},
-  nextStep: () => {},
-  prevStep: () => {},
-  confirm: () => {},
+  form: initialState,
   setForm: (
-    form: typeof FORM_STATE | ((form: typeof FORM_STATE) => typeof FORM_STATE),
+    form: FormStateType | ((form: FormStateType) => FormStateType),
   ) => {},
 });
 
 export function FormProvider({ children }: { children: ReactNode }) {
-  const [form, setForm] = useState(FORM_STATE);
-  const lastPage = form.formIndex >= 3;
-
-  function toggleYearly() {
-    setForm(prev => ({
-      ...prev,
-      plan: {
-        ...prev.plan,
-        yearly: !prev.plan.yearly,
-      },
-    }));
-  }
-
-  function nextStep() {
-    if (lastPage) return;
-
-    setForm(prev => ({
-      ...prev,
-      formIndex: ++prev.formIndex,
-    }));
-  }
-
-  function prevStep() {
-    if (form.formIndex <= 0) return;
-
-    setForm(prev => ({
-      ...prev,
-      formIndex: --prev.formIndex,
-    }));
-  }
-
-  function confirm() {
-    if (!lastPage) return;
-
-    setForm(prev => ({
-      ...prev,
-      done: true,
-    }));
-
-    console.log(form.personal);
-  }
+  const [form, setForm] = useState(initialState);
 
   return (
-    <FormContext.Provider
-      value={{ form, setForm, toggleYearly, prevStep, nextStep, confirm }}
-    >
+    <FormContext.Provider value={{ form, setForm }}>
       {children}
     </FormContext.Provider>
   );
