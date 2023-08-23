@@ -17,8 +17,7 @@ export default function Plan() {
     setForm(prev => ({
       ...prev,
       plan:
-        (target.getAttribute('data-value') as keyof typeof PLANS) ||
-        'Arcade',
+        (target.getAttribute('data-value') as keyof typeof PLANS) || 'Arcade',
     }));
   }
 
