@@ -1,4 +1,4 @@
-import { ADDS_PRICE, PLAN_PRICE } from './prices';
+import { ADDS, PLANS } from './prices';
 
 type countTotalArgs = {
   planType: string;
@@ -13,9 +13,9 @@ export function countTotalPrice({
   storage,
   profile,
 }: countTotalArgs) {
-  const srvc = service ? ADDS_PRICE.service : 0,
-    strg = storage ? ADDS_PRICE.storage : 0,
-    prfl = profile ? ADDS_PRICE.profile : 0;
+  const srvc = service ? ADDS.service : 0,
+    strg = storage ? ADDS.storage : 0,
+    prfl = profile ? ADDS.profile : 0;
 
-  return PLAN_PRICE[planType] + srvc + strg + prfl;
+  return PLANS[planType] + srvc + strg + prfl;
 }
