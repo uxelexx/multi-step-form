@@ -1,14 +1,14 @@
 import { ADDS_PRICE, PLAN_PRICE } from './prices';
 
 type countTotalArgs = {
-  plan: string;
+  planType: string;
   service?: boolean;
   storage?: boolean;
   profile?: boolean;
 };
 
 export function countTotalPrice({
-  plan,
+  planType,
   service,
   storage,
   profile,
@@ -17,5 +17,5 @@ export function countTotalPrice({
     strg = storage ? ADDS_PRICE.storage : 0,
     prfl = profile ? ADDS_PRICE.profile : 0;
 
-  return PLAN_PRICE[plan] + srvc + strg + prfl;
+  return PLAN_PRICE[planType] + srvc + strg + prfl;
 }
