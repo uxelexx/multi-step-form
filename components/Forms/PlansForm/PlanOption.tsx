@@ -1,26 +1,22 @@
 import { cn } from '@/helpers/cn';
-import { formatPrice } from '@/helpers/formatPrice';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 type PlansOptionType = {
-  icon: string;
-  price: number;
-  yearly: boolean;
+  price: string;
   checked: boolean;
-  value: string;
+  plan: string;
+  yearly: boolean;
   onClick: (e: any) => void; // TODO: Add type
 };
 
 export default function PlanOption({
-  icon,
   price,
-  yearly,
   checked,
-  value,
+  plan,
+  yearly,
   onClick,
 }: PlansOptionType) {
-  const formatedPrice = formatPrice(yearly, price);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,7 +45,7 @@ export default function PlanOption({
       role='radio'
       ref={ref}
       aria-checked={checked}
-      data-value={value}
+      data-value={plan}
       onClick={onClick}
       tabIndex={0}
       className={cn(
@@ -57,14 +53,19 @@ export default function PlanOption({
         checked && 'bg-gray-100/50 border-indigo-800',
       )}
     >
-      <label className='sr-only'>{value}</label>
+      <label className='sr-only'>{plan}</label>
       <div className='pointer-events-none'>
-        <Image src={icon} width={40} height={40} alt={value} />
+        <Image
+          src={`icon-${plan.toLowerCase()}.svg`}
+          width={40}
+          height={40}
+          alt={plan}
+        />
         <div>
           <h5 className='block font-medium text-[1.1rem] text-indigo-950 pt-12'>
-            {value}
+            {plan}
           </h5>
-          <p className='text-[0.95rem] text-gray-400'>{formatedPrice}</p>
+          <p className='text-[0.95rem] text-gray-400'>{price}</p>
           {yearly && <p className='text-indigo-950 text-sm'>2 months free</p>}
         </div>
       </div>
