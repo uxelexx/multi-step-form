@@ -1,8 +1,10 @@
 import { useForm } from '@/context/form-context';
+import { ADDS } from '@/helpers/prices';
 import { ChangeEvent } from 'react';
 import FormContainer from '../FormContainer';
 import AddOnsBox from './AddOnsCard';
-import addons from './addons.json';
+
+type AddsKeysType = keyof typeof ADDS;
 
 export default function AddOns() {
   const { form, setForm } = useForm();
@@ -23,13 +25,14 @@ export default function AddOns() {
       description='Add-ons help enchance your gaming experience.'
     >
       <fieldset className='flex flex-col flex-1 space-y-5'>
-        {addons.map(add => (
+        {Object.entries(ADDS).map(([add, value]) => (
           <AddOnsBox
-            key={add.name}
-            checked={form.addOns[add.name as keyof typeof form.addOns]}
+            key={add}
+            name={add}
+            checked={form.addOns[add as AddsKeysType].included}
             onChange={handleAddOns}
-            yearly={form.plan.yearly}
-            {...add}
+            yearly={form.yearly}
+            {...value}
           />
         ))}
       </fieldset>
