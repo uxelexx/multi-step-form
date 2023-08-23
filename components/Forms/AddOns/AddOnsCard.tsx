@@ -5,13 +5,13 @@ import { AddOnsCheckboxInput } from './AddOnsCheckboxInput';
 
 type AddOnsBoxProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
-  desc: string;
+  description: string;
   price: number;
   yearly: boolean;
 };
 export default function AddOnsBox({
   label,
-  desc,
+  description,
   price,
   yearly,
   ...props
@@ -36,7 +36,7 @@ export default function AddOnsBox({
         <label className='font-medium leading-5 text-[1.05rem] block'>
           {label}
         </label>
-        <span className='text-gray-400'>{desc}</span>
+        <span className='text-gray-400'>{description}</span>
       </div>
       <p className='text-indigo-600'>{formatedPrice}</p>
     </div>
