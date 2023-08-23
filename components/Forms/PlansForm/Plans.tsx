@@ -24,20 +24,18 @@ export default function Plan() {
       heading='Select your plan'
       description='You have the option of montly or yearly billing'
     >
-      <fieldset className='h-full flex-col flex space-y-5'>
-        <div role='radiogroup' className='flex space-x-5'>
-          {plans.map(option => (
-            <PlanOption
-              yearly={form.plan.yearly}
-              checked={form.plan.type === option.value}
-              onClick={handlePlan}
-              key={option.value}
-              {...option}
-            />
-          ))}
-        </div>
-        <PlansToggle onClick={toggleYearly} yearly={form.plan.yearly} />
+      <fieldset role='radiogroup' className='flex space-x-5 mb-5'>
+        {plans.map(option => (
+          <PlanOption
+            yearly={form.plan.yearly}
+            checked={form.plan.type === option.value}
+            onClick={handlePlan}
+            key={option.value}
+            {...option}
+          />
+        ))}
       </fieldset>
+      <PlansToggle onClick={toggleYearly} yearly={form.plan.yearly} />
     </FormContainer>
   );
 }
