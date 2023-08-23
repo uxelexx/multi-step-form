@@ -52,6 +52,7 @@ const initialState: FormStateType = {
 
 const FormContext = createContext({
   form: initialState,
+  lastPage: false,
   setForm: (
     form: FormStateType | ((form: FormStateType) => FormStateType),
   ) => {},
@@ -59,9 +60,10 @@ const FormContext = createContext({
 
 export function FormProvider({ children }: { children: ReactNode }) {
   const [form, setForm] = useState(initialState);
+  const lastPage = form.formIndex >= form.formSteps.length - 1;
 
   return (
-    <FormContext.Provider value={{ form, setForm }}>
+    <FormContext.Provider value={{ lastPage, form, setForm }}>
       {children}
     </FormContext.Provider>
   );
