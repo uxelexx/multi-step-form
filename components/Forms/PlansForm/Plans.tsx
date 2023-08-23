@@ -3,7 +3,6 @@ import { MouseEvent } from 'react';
 import FormContainer from '../FormContainer';
 import PlanOption from './PlanOption';
 import PlansToggle from './PlansToggle';
-import plans from './plans.json';
 
 export default function Plan() {
   const { form, setForm, toggleYearly } = useForm();
@@ -24,15 +23,6 @@ export default function Plan() {
       description='You have the option of montly or yearly billing'
     >
       <fieldset role='radiogroup' className='flex space-x-5 mb-5'>
-        {plans.map(option => (
-          <PlanOption
-            yearly={form.plan.yearly}
-            checked={form.plan.type === option.value}
-            onClick={handlePlan}
-            key={option.value}
-            {...option}
-          />
-        ))}
       </fieldset>
       <PlansToggle onClick={toggleYearly} yearly={form.plan.yearly} />
     </FormContainer>
