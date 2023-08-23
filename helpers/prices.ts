@@ -1,4 +1,4 @@
-export const PLAN_PRICE = {
+export const PLANS = {
   Arcade: 9,
   Advanced: 12,
   Pro: 15,
