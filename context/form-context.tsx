@@ -1,11 +1,11 @@
 'use client';
 
-import { ADDS_PRICE, PLAN_PRICE } from '@/helpers/prices';
+import { ADDS, PLANS } from '@/helpers/prices';
 import { ReactNode, createContext, useContext, useState } from 'react';
 
 //TODO: Refactor to RTK
 
-type Plan = keyof typeof PLAN_PRICE;
+type Plan = keyof typeof PLANS;
 
 type AddsService = {
   included: boolean;
@@ -13,7 +13,7 @@ type AddsService = {
 };
 
 type AddOns = {
-  [Key in keyof typeof ADDS_PRICE]: AddsService;
+  [Key in keyof typeof ADDS]: AddsService;
 };
 
 type PersonalInfo = {
@@ -44,9 +44,9 @@ const initialState: FormStateType = {
   },
   plan: 'Arcade',
   addOns: {
-    service: { included: false, price: ADDS_PRICE.service },
-    storage: { included: false, price: ADDS_PRICE.storage },
-    profile: { included: false, price: ADDS_PRICE.profile },
+    service: { included: false, price: ADDS.service.price },
+    storage: { included: false, price: ADDS.storage.price },
+    profile: { included: false, price: ADDS.profile.price },
   },
 };
 
