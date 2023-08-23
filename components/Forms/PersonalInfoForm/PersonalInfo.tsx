@@ -20,12 +20,17 @@ export default function PersonalInfo() {
     }));
   }
 
+  function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault();
+    nextStep();
+  }
+
   return (
     <FormContainer
       heading='Personal info'
       description='Please provide your name, email address, and phone number.'
     >
-      <form onSubmit={nextStep} className='flex flex-col h-full'>
+      <form onSubmit={handleSubmit} className='flex flex-col h-full'>
         <div className='flex flex-col space-y-6'>
           <Input
             autoFocus
