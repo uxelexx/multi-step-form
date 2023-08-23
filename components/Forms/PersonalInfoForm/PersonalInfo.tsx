@@ -1,14 +1,15 @@
+import Button from '@/components/Button/Button';
 import { useForm } from '@/context/form-context';
+import { nextStep } from '@/helpers/uitls';
 import { ChangeEvent } from 'react';
 import FormContainer from '../FormContainer';
 import { Input } from './Input';
-import Button from '@/components/Button/Button';
 
 // TODO:
 // 1) Refactor to useForm with Zod validation
 
 export default function PersonalInfo() {
-  const { form, setForm, nextStep } = useForm();
+  const { form, setForm, lastPage } = useForm();
 
   function handleInputs(e: ChangeEvent<HTMLInputElement>) {
     setForm(prev => ({
@@ -22,7 +23,7 @@ export default function PersonalInfo() {
 
   function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
-    nextStep();
+    nextStep(lastPage, setForm);
   }
 
   return (
