@@ -1,13 +1,13 @@
-import { useForm } from '@/context/form-context';
-import SidebarStep from './SidebarStep';
+import { useAppSelector } from "@/redux/hooks";
+import SidebarStep from "./SidebarStep";
 
 export default function Sidebar() {
-  const { form } = useForm();
+  const { index, formSteps } = useAppSelector((state) => state.formReducer);
 
   return (
-    <aside className='w-[17rem] h-full bg-sidebar space-y-6 rounded-xl p-9 bg-cover'>
-      {form.formSteps.map((step, i) => {
-        const isActive = form.formIndex === i;
+    <aside className="w-[17rem] h-full bg-sidebar space-y-6 rounded-xl p-9 bg-cover">
+      {formSteps.map((step, i) => {
+        const isActive = index === i;
         return (
           <SidebarStep
             key={i}
