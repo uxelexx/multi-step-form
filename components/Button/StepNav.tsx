@@ -1,28 +1,34 @@
-import { useForm } from '@/context/form-context';
-import Button from './Button';
-import { finishForm, nextStep, prevStep } from '@/helpers/uitls';
+import {
+    finishForm,
+    lastPage,
+    nextPage,
+    prevPage,
+} from "@/redux/features/formSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import Button from "./Button";
 
 export function StepNav() {
-  const { form, setForm, lastPage } = useForm();
-  const isFirstStep = form.formIndex === 0;
-  const isLastStep = form.formIndex === form.formSteps.length - 1;
+  const { index } = useAppSelector((state) => state.formReducer);
+  const dispatch = useAppDispatch();
 
-  const confirm = () => finishForm(lastPage, setForm);
-  const next = () => nextStep(lastPage, setForm);
-  const prev = () => prevStep(form.formIndex, setForm);
+  const isFirstStep = index === 0;
+
+  const next = () => dispatch(nextPage());
+  const prev = () => dispatch(prevPage());
+  const finish = () => dispatch(finishForm());
 
   if (isFirstStep) {
     return null;
   }
 
   return (
-    <div className='flex flex-row-reverse mt-auto'>
-      {isLastStep ? (
-        <Button onClick={confirm}>Confirm</Button>
+    <div className="flex flex-row-reverse mt-auto">
+      {lastPage ? (
+        <Button onClick={finish}>Confirm</Button>
       ) : (
         <Button onClick={next}>Next step</Button>
       )}
-      <Button onClick={prev} className='mr-auto' variant='secondary'>
+      <Button onClick={prev} className="mr-auto" variant="secondary">
         Go back
       </Button>
       )
