@@ -1,13 +1,14 @@
 import Button from "@/components/Button/Button";
+import { type ChangeEvent } from "react";
+import FormContainer from "../FormContainer";
+import { Input } from "./Input";
+
 import { nextPage } from "@/redux/features/formSlice";
 import {
     updatePerson,
     type PersonalInfoKeys,
 } from "@/redux/features/personSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { type ChangeEvent } from "react";
-import FormContainer from "../FormContainer";
-import { Input } from "./Input";
 
 export default function PersonalInfo() {
   const { userName, userEmail, userPhone } = useAppSelector(
