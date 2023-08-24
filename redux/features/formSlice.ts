@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 type FormSteps = "Your info" | "Select plan" | "Add-ons" | "Summary";
 
@@ -16,7 +16,7 @@ const initialState: FormInfo = {
   formSteps: ["Your info", "Select plan", "Add-ons", "Summary"],
 };
 
-const lastPage = initialState.index >= initialState.formSteps.length - 1;
+export const lastPage = initialState.index >= initialState.formSteps.length - 1;
 
 export const formSlice = createSlice({
   name: "form",
