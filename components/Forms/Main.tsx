@@ -17,7 +17,3 @@ export default function Main() {
     </section>
   );
 }
-
-// <div className='flex flex-col flex-1 pt-10 pb-5 px-20 h-full'>
-//   {done ? <FinalStep /> : <AllForms index={formIndex as FormIndex} />}
-// </div>
