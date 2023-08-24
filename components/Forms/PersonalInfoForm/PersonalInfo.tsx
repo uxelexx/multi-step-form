@@ -1,15 +1,15 @@
 import Button from "@/components/Button/Button";
-import { useForm } from "@/context/form-context";
-import { nextStep } from "@/helpers/uitls";
-import { ChangeEvent } from "react";
+import { nextPage } from "@/redux/features/formSlice";
+import {
+    updatePerson,
+    type PersonalInfoKeys,
+} from "@/redux/features/personSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { type ChangeEvent } from "react";
 import FormContainer from "../FormContainer";
 import { Input } from "./Input";
 
-import { PersonalInfoKeys, updatePerson } from "@/redux/features/personSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-
 export default function PersonalInfo() {
-  const { setForm, lastPage } = useForm();
   const { userName, userEmail, userPhone } = useAppSelector(
     (state) => state.personReducer,
   );
@@ -24,7 +24,7 @@ export default function PersonalInfo() {
 
   function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
-    nextStep(lastPage, setForm);
+    dispatch(nextPage());
   }
 
   return (
