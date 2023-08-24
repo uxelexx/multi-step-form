@@ -6,6 +6,13 @@ type PersonalInfo = {
   userPhone: string;
 };
 
+export type PersonalInfoKeys = keyof PersonalInfo;
+
+type Payload = {
+  name: PersonalInfoKeys;
+  value: string;
+};
+
 const initialState: PersonalInfo = {
   userName: "",
   userEmail: "",
@@ -13,16 +20,14 @@ const initialState: PersonalInfo = {
 };
 
 export const person = createSlice({
-  name: "personal",
+  name: "personalInfo",
   initialState,
   reducers: {
-    setPersonalInfo: (state, action: PayloadAction<PersonalInfo>) => {
-      state.userName = action.payload.userName;
-      state.userEmail = action.payload.userEmail;
-      state.userPhone = action.payload.userPhone;
+    updatePerson: (state, action: PayloadAction<Payload>) => {
+      state[action.payload.name] = action.payload.value;
     },
   },
 });
 
-export const { setPersonalInfo } = person.actions;
+export const { updatePerson } = person.actions;
 export default person.reducer;
