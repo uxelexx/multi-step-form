@@ -1,15 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { Plans, PlanPrices } from "@/public/types/types";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-export type PlansKey = keyof Plans;
-
-type Plans = {
-  Arcade: number;
-  Advanced: number;
-  Pro: number;
-  type: PlansKey;
-};
-
-export const plansPrices: Omit<Plans, "type"> = {
+export const plansPrices: PlanPrices = {
   Arcade: 9,
   Advanced: 12,
   Pro: 15,
@@ -24,7 +16,7 @@ export const planSlice = createSlice({
   name: "plan",
   initialState,
   reducers: {
-    setPlan: (state, action: PayloadAction<PlansKey>) => {
+    setPlan: (state, action: PayloadAction<keyof typeof plansPrices>) => {
       state.type = action.payload;
     },
   },
