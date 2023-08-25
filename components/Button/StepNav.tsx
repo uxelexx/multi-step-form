@@ -1,17 +1,13 @@
-import {
-    finishForm,
-    lastPage,
-    nextPage,
-    prevPage,
-} from "@/redux/features/formSlice";
+import { finishForm, nextPage, prevPage } from "@/redux/features/formSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Button from "./Button";
 
 export function StepNav() {
-  const { index } = useAppSelector((state) => state.formReducer);
+  const form = useAppSelector((state) => state.formReducer);
   const dispatch = useAppDispatch();
 
-  const isFirstStep = index === 0;
+  const isFirstStep = form.index === 0;
+  const isLastStep = form.index === form.formSteps.length - 1;
 
   const next = () => dispatch(nextPage());
   const prev = () => dispatch(prevPage());
@@ -23,7 +19,7 @@ export function StepNav() {
 
   return (
     <div className="flex flex-row-reverse mt-auto">
-      {lastPage ? (
+      {isLastStep ? (
         <Button onClick={finish}>Confirm</Button>
       ) : (
         <Button onClick={next}>Next step</Button>
