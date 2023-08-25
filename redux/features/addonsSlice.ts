@@ -7,25 +7,43 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // };
 
 type Addons = {
-  service: { included: boolean; price: number; description: string };
-  storage: { included: boolean; price: number; description: string };
-  profile: { included: boolean; price: number; description: string };
+  service: {
+    label: string;
+    included: boolean;
+    price: number;
+    description: string;
+  };
+  storage: {
+    label: string;
+    included: boolean;
+    price: number;
+    description: string;
+  };
+  profile: {
+    label: string;
+    included: boolean;
+    price: number;
+    description: string;
+  };
 };
 
-type AddonsType = keyof Addons;
+export type AddonsKeys = keyof Addons;
 
 const initialState: Addons = {
   service: {
+    label: "Online service",
     included: false,
     price: 1,
     description: "Access to multiplayer games",
   },
   storage: {
+    label: "Extra storage",
     included: false,
     price: 2,
     description: "Extra 1TB of cloud save",
   },
   profile: {
+    label: "Customizable profile",
     included: false,
     price: 2,
     description: "Custom theme on your profile",
@@ -36,7 +54,7 @@ const addonsSlice = createSlice({
   name: "addons",
   initialState,
   reducers: {
-    setAddons: (state, action: PayloadAction<AddonsType>) => {
+    setAddons: (state, action: PayloadAction<AddonsKeys>) => {
       state[action.payload].included = !state[action.payload].included;
     },
   },
