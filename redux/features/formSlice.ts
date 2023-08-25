@@ -1,13 +1,5 @@
+import { FormInfo } from "@/public/types/types";
 import { createSlice } from "@reduxjs/toolkit";
-
-type FormSteps = "Your info" | "Select plan" | "Add-ons" | "Summary";
-
-type FormInfo = {
-  index: number;
-  done: boolean;
-  yearly: boolean;
-  formSteps: FormSteps[];
-};
 
 const initialState: FormInfo = {
   index: 0, // Change later to 0
