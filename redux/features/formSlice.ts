@@ -10,31 +10,24 @@ type FormInfo = {
 };
 
 const initialState: FormInfo = {
-  index: 0,
+  index: 0, // Change later to 0
   done: false,
   yearly: false,
   formSteps: ["Your info", "Select plan", "Add-ons", "Summary"],
 };
-
-export const lastPage = initialState.index >= initialState.formSteps.length - 1;
 
 export const formSlice = createSlice({
   name: "form",
   initialState,
   reducers: {
     nextPage: (state) => {
-      if (lastPage) {
-        return;
-      }
+      const isLastPage = state.index >= state.formSteps.length - 1;
 
-      state.index++;
+      if (!isLastPage) state.index++;
     },
-    prevPage: (state) => {
-      if (state.index === 0) {
-        return;
-      }
 
-      state.index--;
+    prevPage: (state) => {
+      if (!state.index) state.index--;
     },
 
     toggleYearly: (state) => {
