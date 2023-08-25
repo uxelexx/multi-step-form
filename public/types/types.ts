@@ -8,6 +8,20 @@ export type FormInfo = {
   formSteps: FormSteps[];
 };
 
+//Personal info types
+export type PersonalInfo = {
+  userName: string;
+  userEmail: string;
+  userPhone: string;
+};
+
+export type PersonalInfoField = keyof PersonalInfo;
+
+export type PayloadActionType = {
+  name: PersonalInfoField;
+  value: string;
+};
+
 // Plan types
 export type PlanPrices = {
   Arcade: number;

@@ -1,17 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type PersonalInfo = {
-  userName: string;
-  userEmail: string;
-  userPhone: string;
-};
-
-export type PersonalInfoKeys = keyof PersonalInfo;
-
-type Payload = {
-  name: PersonalInfoKeys;
-  value: string;
-};
+import type { PayloadActionType, PersonalInfo } from "@/public/types/types";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: PersonalInfo = {
   userName: "",
@@ -19,15 +7,15 @@ const initialState: PersonalInfo = {
   userPhone: "",
 };
 
-export const person = createSlice({
-  name: "personalInfo",
+export const personSlice = createSlice({
+  name: "person",
   initialState,
   reducers: {
-    updatePerson: (state, action: PayloadAction<Payload>) => {
+    updatePerson: (state, action: PayloadAction<PayloadActionType>) => {
       state[action.payload.name] = action.payload.value;
     },
   },
 });
 
-export const { updatePerson } = person.actions;
-export default person.reducer;
+export const { updatePerson } = personSlice.actions;
+export default personSlice.reducer;
