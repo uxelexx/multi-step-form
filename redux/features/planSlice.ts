@@ -1,7 +1,7 @@
-import type { Plans, PlanPrices } from "@/types";
+import type { PlanPrices, Plans } from "@/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-export const plansPrices: PlanPrices = {
+const plansPrices: PlanPrices = {
   Arcade: 9,
   Advanced: 12,
   Pro: 15,
