@@ -5,13 +5,13 @@ import PlanOption from "./PlanOption";
 import PlansToggle from "./PlansToggle";
 
 import { toggleYearly } from "@/redux/features/formSlice";
-import { plansPrices, setPlan } from "@/redux/features/planSlice";
+import { setPlan } from "@/redux/features/planSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { PlanType } from "@/types";
+import { type PlanType } from "@/types";
 
 export default function Plan() {
-  const { yearly } = useAppSelector((state) => state.formReducer);
-  const plan = useAppSelector((state) => state.planReducer);
+  const { yearly } = useAppSelector(state => state.formReducer);
+  const plan = useAppSelector(state => state.planReducer);
   const dispatch = useAppDispatch();
 
   const toggleYear = () => dispatch(toggleYearly());
@@ -29,7 +29,9 @@ export default function Plan() {
       description="You have the option of montly or yearly billing"
     >
       <fieldset role="radiogroup" className="flex space-x-5 mb-5">
-        {Object.entries(plansPrices).map(([planType, cost]) => {
+        {Object.entries(plan).map(([planType, cost]) => {
+          if (planType === "type") return null;
+
           const price = formatPrice(yearly, cost);
 
           return (
