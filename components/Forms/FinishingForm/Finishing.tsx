@@ -1,67 +1,61 @@
-import { StepNav } from '@/components/Button/StepNav';
-import { useForm } from '@/context/form-context';
-import { countTotalPrice } from '@/helpers/countTotal';
-import { ADDS_PRICE } from '@/helpers/prices';
-import FormContainer from '../FormContainer';
-import FinishingAdds from './FinishingAdds';
-import FinishingPlan from './FinishingPlan';
-import FinishingTotal from './FinishingTotal';
+import { countTotalPrice } from "@/helpers/countTotal";
+import { formatPrice } from "@/helpers/formatPrice";
+import FormContainer from "../FormContainer";
+import FinishingAdds from "./FinishingAdds";
+import FinishingPlan from "./FinishingPlan";
+import FinishingTotal from "./FinishingTotal";
+
+import { type AddonsKeys } from "@/redux/features/addonsSlice";
+import { toggleYearly } from "@/redux/features/formSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 export default function Finishing() {
-  const { form, toggleYearly } = useForm();
-  const yearly = form.plan.yearly;
-  const someAddOns =
-    form.addOns.largeStorage ||
-    form.addOns.customizableProfile ||
-    form.addOns.onlineService;
-  const totalPrice = countTotalPrice({
-    plan: form.plan.type,
-    service: form.addOns.onlineService,
-    storage: form.addOns.largeStorage,
-    profile: form.addOns.customizableProfile,
-  });
+  const dispatch = useAppDispatch();
+  const addons = useAppSelector((state) => state.addonsReducer);
+  const plan = useAppSelector((state) => state.planReducer);
+  const { yearly } = useAppSelector((state) => state.formReducer);
+
+  const { service, storage, profile } = addons;
+
+  const toggle = () => dispatch(toggleYearly());
+
+  const someAddOns = storage.included || profile.included || service.included;
+  const totalPrice = countTotalPrice(plan.type, addons);
+
+  const planPrice = formatPrice(yearly, plan[plan.type]);
 
   return (
     <FormContainer
-      heading='Finishing up'
-      description='Double-check everything looks OK before confirming.'
+      heading="Finishing up"
+      description="Double-check everything looks OK before confirming."
     >
-      <div className='text-indigo-950 flex flex-col bg-gray-100/60 px-5 py-6 rounded-xl'>
-        <div className='flex items-center'>
-          <FinishingPlan
-            onClick={toggleYearly}
-            plan={form.plan.type}
-            yearly={yearly}
-          />
-        </div>
+      <div className="text-indigo-950 flex flex-col bg-gray-100/60 px-5 py-6 rounded-xl">
+        <FinishingPlan
+          onClick={toggle}
+          yearly={yearly}
+          plan={plan.type}
+          price={planPrice}
+        />
 
-        {someAddOns && <hr className='my-4' />}
-        <div className='flex flex-col text-gray-400 space-y-4'>
-          {form.addOns.onlineService && (
-            <FinishingAdds
-              heading='Onlince service'
-              price={ADDS_PRICE.service}
-              yearly={yearly}
-            />
-          )}
-          {form.addOns.largeStorage && (
-            <FinishingAdds
-              heading='Larger storage'
-              price={ADDS_PRICE.storage}
-              yearly={yearly}
-            />
-          )}
-          {form.addOns.customizableProfile && (
-            <FinishingAdds
-              heading='Customizable Profile'
-              price={ADDS_PRICE.profile}
-              yearly={yearly}
-            />
-          )}
+        {someAddOns && <hr className="my-4" />}
+
+        <div className="flex flex-col text-gray-400 space-y-4">
+          {Object.entries(addons).map(([name, add]) => {
+            const price = formatPrice(yearly, add.price);
+
+            return (
+              <FinishingAdds
+                key={name}
+                included={addons[name as AddonsKeys].included}
+                heading={add.label}
+                price={price}
+                yearly={yearly}
+              />
+            );
+          })}
         </div>
       </div>
       <FinishingTotal total={totalPrice} yearly={yearly} />
-      <StepNav />
     </FormContainer>
   );
 }

@@ -1,22 +1,21 @@
-import { formatPrice } from '@/helpers/formatPrice';
-
 type FinishingAddsProps = {
   heading: string;
-  price: number;
+  price: string;
   yearly: boolean;
+  included: boolean;
 };
 
 export default function FinishingAdds({
-  yearly,
   heading,
   price,
+  included,
 }: FinishingAddsProps) {
-  const formatedPrice = formatPrice(yearly, price);
+  if (!included) return null;
 
   return (
     <div className='flex'>
       <h6 className='flex-1 flex flex-col'>{heading}</h6>
-      <span className='text-indigo-950'>{formatedPrice}</span>
+      <span className='text-indigo-950'>{price}</span>
     </div>
   );
 }
