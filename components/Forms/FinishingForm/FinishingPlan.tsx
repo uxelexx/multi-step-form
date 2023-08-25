@@ -1,3 +1,5 @@
+import { formatPlan } from "@/helpers/formatPlan";
+
 type FinishingPlanProps = {
   yearly: boolean;
   onClick: () => void;
@@ -11,9 +13,7 @@ export default function FinishingPlan({
   plan,
   price,
 }: FinishingPlanProps) {
-  const formatedPlan = (function (yearly: boolean, plan: string) {
-    return yearly ? `${plan} (Yearly)` : `${plan} (Monthly)`;
-  })(yearly, plan); // Вынести в хелперы
+  const formatedPlan = formatPlan(yearly, plan);
 
   return (
     <div className="flex w-full">
