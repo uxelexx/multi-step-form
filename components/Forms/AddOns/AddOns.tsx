@@ -1,11 +1,10 @@
-import { useForm } from "@/context/form-context";
 import { ChangeEvent } from "react";
 import FormContainer from "../FormContainer";
 import AddOnsBox from "./AddOnsCard";
 
+import { formatPrice } from "@/helpers/formatPrice";
 import { setAddons, type AddonsKeys } from "@/redux/features/addonsSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { formatPrice } from "@/helpers/formatPrice";
 
 export default function AddOns() {
   const dispatch = useAppDispatch();
