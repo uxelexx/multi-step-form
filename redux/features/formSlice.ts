@@ -1,4 +1,4 @@
-import { FormInfo } from "@/types";
+import { type FormInfo } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: FormInfo = {
@@ -12,21 +12,21 @@ export const formSlice = createSlice({
   name: "form",
   initialState,
   reducers: {
-    nextPage: (state) => {
+    nextPage: state => {
       const isLastPage = state.index >= state.formSteps.length - 1;
 
       if (!isLastPage) state.index++;
     },
 
-    prevPage: (state) => {
-      if (!state.index) state.index--;
+    prevPage: state => {
+      if (state.index) state.index--;
     },
 
-    toggleYearly: (state) => {
+    toggleYearly: state => {
       state.yearly = !state.yearly;
     },
 
-    finishForm: (state) => {
+    finishForm: state => {
       state.done = true;
     },
   },
