@@ -32,3 +32,15 @@ export type PlanPrices = {
 export type Plans = PlanPrices & {
   type: keyof PlanPrices;
 };
+
+// Addons types
+export type AddonType = "service" | "storage" | "profile";
+
+type Addon = {
+  label: string;
+  description: string;
+  price: number;
+  included: boolean;
+};
+
+export type Addons = Record<AddonType, Addon>;
