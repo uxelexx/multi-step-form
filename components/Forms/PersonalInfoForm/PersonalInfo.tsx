@@ -1,13 +1,11 @@
 import Button from "@/components/Button/Button";
+import type { PersonalInfoField } from "@/public/types/types";
 import { type ChangeEvent } from "react";
 import FormContainer from "../FormContainer";
 import { Input } from "./Input";
 
 import { nextPage } from "@/redux/features/formSlice";
-import {
-    updatePerson,
-    type PersonalInfoKeys,
-} from "@/redux/features/personSlice";
+import { updatePerson } from "@/redux/features/personSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 export default function PersonalInfo() {
@@ -17,7 +15,7 @@ export default function PersonalInfo() {
   const dispatch = useAppDispatch();
 
   function handleInputs(e: ChangeEvent<HTMLInputElement>) {
-    const name = e.target.name as PersonalInfoKeys;
+    const name = e.target.name as PersonalInfoField;
     const value = e.target.value;
 
     dispatch(updatePerson({ name, value }));

@@ -1,9 +1,9 @@
-import { PersonalInfoKeys } from "@/redux/features/personSlice";
-import React, { InputHTMLAttributes } from "react";
+import type { PersonalInfoField } from "@/public/types/types";
+import { type InputHTMLAttributes } from "react";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
-  name: PersonalInfoKeys;
+  name: PersonalInfoField;
 };
 
 export function Input({ name, label, ...rest }: InputProps) {
