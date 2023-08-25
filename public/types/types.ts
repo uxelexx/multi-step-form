@@ -8,14 +8,9 @@ export type FormInfo = {
   formSteps: FormSteps[];
 };
 
-//Personal info types
-export type PersonalInfo = {
-  userName: string;
-  userEmail: string;
-  userPhone: string;
-};
-
-export type PersonalInfoField = keyof PersonalInfo;
+// Personal info types
+export type PersonalInfoField = "userName" | "userEmail" | "userPhone";
+export type PersonalInfo = Record<PersonalInfoField, string>;
 
 export type PayloadActionType = {
   name: PersonalInfoField;
@@ -23,14 +18,10 @@ export type PayloadActionType = {
 };
 
 // Plan types
-export type PlanPrices = {
-  Arcade: number;
-  Advanced: number;
-  Pro: number;
-};
-
+export type PlanType = "Arcade" | "Advanced" | "Pro";
+export type PlanPrices = Record<PlanType, number>;
 export type Plans = PlanPrices & {
-  type: keyof PlanPrices;
+  type: PlanType;
 };
 
 // Addons types
