@@ -20,7 +20,7 @@ export default function Finishing() {
   const toggle = () => dispatch(toggleYearly());
 
   const someAddOns = storage.included || profile.included || service.included;
-  const totalPrice = countTotalPrice(plan.type, addons);
+  const totalPrice = countTotalPrice(plan[plan.type], addons);
 
   const planPrice = formatPrice(yearly, plan[plan.type]);
 
