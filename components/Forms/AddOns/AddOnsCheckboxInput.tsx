@@ -1,4 +1,4 @@
-import { ForwardedRef, InputHTMLAttributes, forwardRef } from "react";
+import { type ForwardedRef, type InputHTMLAttributes, forwardRef } from "react";
 
 export const AddOnsCheckboxInput = forwardRef(function ChechboxInput(
   props: InputHTMLAttributes<HTMLInputElement>,

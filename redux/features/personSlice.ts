@@ -1,4 +1,4 @@
-import type { PayloadActionType, PersonalInfo } from "@/public/types/types";
+import type { PayloadActionType, PersonalInfo } from "@/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: PersonalInfo = {

@@ -1,4 +1,4 @@
-import { FormInfo } from "@/public/types/types";
+import { FormInfo } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: FormInfo = {

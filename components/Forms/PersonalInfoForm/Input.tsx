@@ -1,4 +1,4 @@
-import type { PersonalInfoField } from "@/public/types/types";
+import type { PersonalInfoField } from "@/types";
 import { type InputHTMLAttributes } from "react";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {

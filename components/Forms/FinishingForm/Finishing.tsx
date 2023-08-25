@@ -1,19 +1,19 @@
 import { countTotalPrice } from "@/helpers/countTotal";
 import { formatPrice } from "@/helpers/formatPrice";
+import { type AddonType } from "@/types";
 import FormContainer from "../FormContainer";
 import FinishingAdds from "./FinishingAdds";
 import FinishingPlan from "./FinishingPlan";
 import FinishingTotal from "./FinishingTotal";
 
-import { type AddonsKeys } from "@/redux/features/addonsSlice";
 import { toggleYearly } from "@/redux/features/formSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 export default function Finishing() {
   const dispatch = useAppDispatch();
-  const addons = useAppSelector((state) => state.addonsReducer);
-  const plan = useAppSelector((state) => state.planReducer);
-  const { yearly } = useAppSelector((state) => state.formReducer);
+  const addons = useAppSelector(state => state.addonsReducer);
+  const plan = useAppSelector(state => state.planReducer);
+  const { yearly } = useAppSelector(state => state.formReducer);
 
   const { service, storage, profile } = addons;
 
@@ -46,7 +46,7 @@ export default function Finishing() {
             return (
               <FinishingAdds
                 key={name}
-                included={addons[name as AddonsKeys].included}
+                included={addons[name as AddonType].included}
                 heading={add.label}
                 price={price}
                 yearly={yearly}

@@ -1,5 +1,5 @@
 import { cn } from "@/helpers/cn";
-import { InputHTMLAttributes, useRef } from "react";
+import { type InputHTMLAttributes, useRef } from "react";
 import { AddOnsCheckboxInput } from "./AddOnsCheckboxInput";
 
 type AddOnsBoxProps = InputHTMLAttributes<HTMLInputElement> & {

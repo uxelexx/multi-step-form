@@ -1,4 +1,4 @@
-import type { Plans, PlanPrices } from "@/public/types/types";
+import type { Plans, PlanPrices } from "@/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 export const plansPrices: PlanPrices = {

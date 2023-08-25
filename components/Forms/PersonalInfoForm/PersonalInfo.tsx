@@ -1,5 +1,5 @@
 import Button from "@/components/Button/Button";
-import type { PersonalInfoField } from "@/public/types/types";
+import type { PersonalInfoField } from "@/types";
 import { type ChangeEvent } from "react";
 import FormContainer from "../FormContainer";
 import { Input } from "./Input";

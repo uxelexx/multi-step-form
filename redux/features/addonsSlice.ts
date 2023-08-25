@@ -1,4 +1,4 @@
-import type { Addons, AddonType } from "@/public/types/types";
+import type { Addons, AddonType } from "@/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: Addons = {
