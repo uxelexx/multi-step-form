@@ -32,7 +32,7 @@ export default function Plan() {
         {Object.entries(plan).map(([planType, cost]) => {
           if (planType === "type") return null;
 
-          const price = formatPrice(yearly, cost);
+          const price = formatPrice(yearly, +cost);
 
           return (
             <PlanOption
