@@ -1,4 +1,4 @@
-import { Addons } from "@/types";
+import { type Addons } from "@/types";
 
 export function countTotalPrice(planPrice: number, addons: Addons) {
   return (
