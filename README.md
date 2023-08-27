@@ -14,4 +14,4 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This is a solution for FrontendMentor [challenge](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ)
+This is a solution for [FrontendMentor challenge](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ)
