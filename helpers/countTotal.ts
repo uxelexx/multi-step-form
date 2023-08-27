@@ -1,9 +1,9 @@
 import { Addons } from "@/types";
 
-export function countTotalPrice(plan: number, addons: Addons) {
+export function countTotalPrice(planPrice: number, addons: Addons) {
   return (
     Object.values(addons).reduce((acc, value) => {
       return value.included ? acc + value.price : acc;
-    }, 0) + plan
+    }, 0) + planPrice
   );
 }
