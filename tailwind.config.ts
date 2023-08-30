@@ -10,6 +10,7 @@ export default {
     extend: {
       backgroundImage: {
         sidebar: "url('/bg-sidebar-desktop.svg')",
+        "sidebar-mobile": "url('/bg-sidebar-mobile.svg')",
       },
     },
     fontFamily: {

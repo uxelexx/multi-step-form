@@ -23,7 +23,7 @@ export default function AddOnsBox({
     <div
       onClick={handleDivClick}
       className={cn(
-        "flex relative items-center text-indigo-950 outline-indigo-300 outline-offset-3 border hover:border-indigo-950 border-gray-300 rounded-xl py-4 px-7 cursor-pointer space-x-6",
+        "flex relative items-center text-indigo-950 outline-indigo-300 outline-offset-3 border hover:border-indigo-950 border-gray-300 rounded-xl lg:py-4 p-3 lg:px-7 cursor-pointer space-x-6",
         props.checked && "border-indigo-800 bg-indigo-100/50",
       )}
     >
@@ -32,9 +32,11 @@ export default function AddOnsBox({
         <label className="font-medium leading-5 text-[1.05rem] block">
           {label}
         </label>
-        <span className="text-gray-400">{description}</span>
+        <span className="text-gray-400 lg:text-base text-sm">
+          {description}
+        </span>
       </div>
-      <p className="text-indigo-600">{price}</p>
+      <p className="text-indigo-600 lg:text-base text-sm">{price}</p>
     </div>
   );
 }

@@ -60,10 +60,10 @@ export default function PersonalInfo() {
             onChange={handleInputs}
           />
         </div>
-        <Button type="submit" className="mt-auto ml-auto">
-          Next step
-        </Button>
       </form>
     </FormContainer>
   );
 }
+// <Button type="submit" className="absolute bottom-0 md:block md:mt-auto md:ml-auto">
+//   Next step
+// </Button>

@@ -10,7 +10,7 @@ export default function SidebarStep({
   active,
 }: SidebarStepProps) {
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center md:space-x-4">
       <div
         className={`${
           active
@@ -21,8 +21,8 @@ export default function SidebarStep({
         {stepNum}
       </div>
       <div className="flex flex-col">
-        <span className="text-xs text-gray-200/70 font-normal">{`Step ${stepNum}`}</span>
-        <h5 className="uppercase text-white font-medium text-[0.9rem] tracking-wider">
+        <span className="text-xs md:block  hidden text-gray-200/70 font-normal">{`Step ${stepNum}`}</span>
+        <h5 className="uppercase md:block hidden text-white font-medium text-[0.9rem] tracking-wider">
           {stepInfo}
         </h5>
       </div>

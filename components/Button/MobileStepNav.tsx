@@ -2,7 +2,7 @@ import { finishForm, nextPage, prevPage } from "@/redux/features/formSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Button from "./Button";
 
-export function StepNav() {
+export function MobileStepNav() {
   const form = useAppSelector(state => state.formReducer);
   const dispatch = useAppDispatch();
 
@@ -13,12 +13,8 @@ export function StepNav() {
   const prev = () => dispatch(prevPage());
   const finish = () => dispatch(finishForm());
 
-  // if (isFirstStep) {
-  //   return null;
-  // }
-
   return (
-    <div className="flex-row-reverse mt-auto w-full hidden md:flex">
+    <div className="flex absolute bottom-0 left-0 flex-row-reverse bg-white w-full md:hidden p-4">
       {isLastStep ? (
         <Button onClick={finish}>Confirm</Button>
       ) : (

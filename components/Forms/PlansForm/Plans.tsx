@@ -28,7 +28,10 @@ export default function Plan() {
       heading="Select your plan"
       description="You have the option of montly or yearly billing"
     >
-      <fieldset role="radiogroup" className="flex space-x-5 mb-5">
+      <fieldset
+        role="radiogroup"
+        className="flex md:flex-row flex-col space-y-3 md:space-y-0 md:space-x-5 mb-5"
+      >
         {Object.entries(plan).map(([planType, cost]) => {
           if (planType === "type") return null;
 
