@@ -1,28 +1,12 @@
 import { formatPrice } from "@/helpers/formatPrice";
-import { type MouseEvent } from "react";
+import { getEntries } from "@/helpers/getEntries";
 import FormContainer from "../FormContainer";
 import PlanOption from "./PlanOption";
 import PlansToggle from "./PlansToggle";
-
-import { getEntries } from "@/helpers/getEntries";
-import { toggleYearly } from "@/redux/features/formSlice";
-import { setPlan } from "@/redux/features/planSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { type PlanType } from "@/types";
+import { usePlans } from "./usePlans";
 
 export default function Plan() {
-  const { yearly } = useAppSelector(state => state.formReducer);
-  const plan = useAppSelector(state => state.planReducer);
-  const dispatch = useAppDispatch();
-
-  const toggleYear = () => dispatch(toggleYearly());
-
-  function handlePlan(e: MouseEvent<HTMLDivElement> | KeyboardEvent) {
-    const target = e.target as HTMLElement;
-    const plan = target.getAttribute("data-value") as PlanType;
-
-    dispatch(setPlan(plan));
-  }
+  const { plan, yearly, toggleYear, handlePlan } = usePlans();
 
   return (
     <FormContainer
