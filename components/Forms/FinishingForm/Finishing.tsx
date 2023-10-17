@@ -1,11 +1,11 @@
 import { countTotalPrice } from "@/helpers/countTotal";
 import { formatPrice } from "@/helpers/formatPrice";
-import { type AddonType } from "@/types";
 import FormContainer from "../FormContainer";
 import FinishingAdds from "./FinishingAdds";
 import FinishingPlan from "./FinishingPlan";
 import FinishingTotal from "./FinishingTotal";
 
+import { getEntries } from "@/helpers/getEntries";
 import { toggleYearly } from "@/redux/features/formSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
@@ -40,19 +40,15 @@ export default function Finishing() {
         {someAddOns && <hr className="my-4" />}
 
         <div className="flex flex-col text-gray-400 space-y-4">
-          {Object.entries(addons).map(([name, add]) => {
-            const price = formatPrice(yearly, add.price);
-
-            return (
-              <FinishingAdds
-                key={name}
-                included={addons[name as AddonType].included}
-                heading={add.label}
-                price={price}
-                yearly={yearly}
-              />
-            );
-          })}
+          {getEntries(addons).map(([name, add]) => (
+            <FinishingAdds
+              key={name}
+              included={addons[name].included}
+              heading={add.label}
+              price={formatPrice(yearly, add.price)}
+              yearly={yearly}
+            />
+          ))}
         </div>
       </div>
       <FinishingTotal total={totalPrice} yearly={yearly} />
