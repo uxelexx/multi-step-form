@@ -1,30 +1,10 @@
-import Button from "@/components/Button/Button";
-import type { PersonalInfoField } from "@/types";
-import { type ChangeEvent, type FormEvent } from "react";
 import FormContainer from "../FormContainer";
 import { Input } from "./Input";
-
-import { nextPage } from "@/redux/features/formSlice";
-import { updatePerson } from "@/redux/features/personSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { usePersonalInfo } from "./usePeronalInfo";
 
 export default function PersonalInfo() {
-  const { userName, userEmail, userPhone } = useAppSelector(
-    state => state.personReducer,
-  );
-  const dispatch = useAppDispatch();
-
-  function handleInputs(e: ChangeEvent<HTMLInputElement>) {
-    const name = e.target.name as PersonalInfoField;
-    const value = e.target.value;
-
-    dispatch(updatePerson({ name, value }));
-  }
-
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    dispatch(nextPage());
-  }
+  const { handleSubmit, handleInputs, userName, userEmail, userPhone } =
+    usePersonalInfo();
 
   return (
     <FormContainer
@@ -64,6 +44,3 @@ export default function PersonalInfo() {
     </FormContainer>
   );
 }
-// <Button type="submit" className="absolute bottom-0 md:block md:mt-auto md:ml-auto">
-//   Next step
-// </Button>
