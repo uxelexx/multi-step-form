@@ -1,21 +1,11 @@
-import { type AddonType } from "@/types";
-import { type ChangeEvent } from "react";
-import FormContainer from "../FormContainer";
-import AddOnsBox from "./AddOnsCard";
-
 import { formatPrice } from "@/helpers/formatPrice";
 import { getEntries } from "@/helpers/getEntries";
-import { setAddons } from "@/redux/features/addonsSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import FormContainer from "../FormContainer";
+import AddOnsBox from "./AddOnsCard";
+import { useAddOns } from "./useAddOns";
 
 export default function AddOns() {
-  const dispatch = useAppDispatch();
-  const addons = useAppSelector(state => state.addonsReducer);
-  const { yearly } = useAppSelector(state => state.formReducer);
-
-  function handleAddOns(e: ChangeEvent<HTMLInputElement>) {
-    dispatch(setAddons(e.target.name as AddonType));
-  }
+  const { addons, yearly, handleAddOns } = useAddOns();
 
   return (
     <FormContainer
