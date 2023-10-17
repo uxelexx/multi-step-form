@@ -8,6 +8,7 @@ import { toggleYearly } from "@/redux/features/formSlice";
 import { setPlan } from "@/redux/features/planSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { type PlanType } from "@/types";
+import { getEntries } from "@/helpers/getEntries";
 
 export default function Plan() {
   const { yearly } = useAppSelector(state => state.formReducer);
@@ -32,16 +33,14 @@ export default function Plan() {
         role="radiogroup"
         className="flex md:flex-row flex-col space-y-3 md:space-y-0 md:space-x-5 mb-5"
       >
-        {Object.entries(plan).map(([planType, cost]) => {
-          if (planType === "type") return null;
-
-          const price = formatPrice(yearly, +cost);
+        {getEntries(plan).map(([planType, cost]) => {
+          if (planType === "type") return;
 
           return (
             <PlanOption
               key={planType}
               plan={planType}
-              price={price}
+              price={formatPrice(yearly, cost)}
               yearly={yearly}
               checked={plan.type === planType}
               onClick={handlePlan}
