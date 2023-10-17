@@ -1,11 +1,12 @@
 import { cn } from "@/helpers/cn";
+import type { PlanType } from "@/types";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 type PlansOptionType = {
   price: string;
   checked: boolean;
-  plan: string;
+  plan: PlanType;
   yearly: boolean;
   onClick: (e: any) => void; // TODO: Add type
 };
