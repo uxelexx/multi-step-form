@@ -4,11 +4,11 @@ import FormContainer from "../FormContainer";
 import PlanOption from "./PlanOption";
 import PlansToggle from "./PlansToggle";
 
+import { getEntries } from "@/helpers/getEntries";
 import { toggleYearly } from "@/redux/features/formSlice";
 import { setPlan } from "@/redux/features/planSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { type PlanType } from "@/types";
-import { getEntries } from "@/helpers/getEntries";
 
 export default function Plan() {
   const { yearly } = useAppSelector(state => state.formReducer);
@@ -17,7 +17,7 @@ export default function Plan() {
 
   const toggleYear = () => dispatch(toggleYearly());
 
-  function handlePlan(e: MouseEvent<HTMLDivElement>) {
+  function handlePlan(e: MouseEvent<HTMLDivElement> | KeyboardEvent) {
     const target = e.target as HTMLElement;
     const plan = target.getAttribute("data-value") as PlanType;
 

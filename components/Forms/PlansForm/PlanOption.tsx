@@ -1,14 +1,14 @@
 import { cn } from "@/helpers/cn";
 import type { PlanType } from "@/types";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type MouseEvent } from "react";
 
 type PlansOptionType = {
   price: string;
   checked: boolean;
   plan: PlanType;
   yearly: boolean;
-  onClick: (e: any) => void; // TODO: Add type
+  onClick: (e: MouseEvent<HTMLDivElement> | KeyboardEvent) => void;
 };
 
 export default function PlanOption({
