@@ -13,14 +13,10 @@ export function StepNav() {
   const prev = () => dispatch(prevPage());
   const finish = () => dispatch(finishForm());
 
-  // if (isFirstStep) {
-  //   return null;
-  // }
-
   return (
     <div className="flex-row-reverse mt-auto w-full hidden md:flex">
       {isLastStep ? (
-        <Button onClick={finish}>Confirm</Button>
+        <Button onClick={finish}>Confirm</Button> // send data to server
       ) : (
         <Button onClick={next}>Next step</Button>
       )}
